@@ -6,13 +6,13 @@ const Card = (props) => {
 
     return (
         <div className={style.container}>
-    <div className={style.card}>
-        <h1>Ecommerce</h1>
+            <div className={style.card}>
+                <h1>Ecommerce</h1>
 
-        <Products state={props.store.products}/>
-    </div>
+                <Products store={props.store}/>
+            </div>
         </div>
-)
+    )
 }
 
 

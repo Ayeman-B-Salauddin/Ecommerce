@@ -1,12 +1,14 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "./components/card/Card";
+import store from "./redux/store";
 
 
 const App = (props) => {
+
   return (
       <div>
-       <Card store={props.store.productsPage}/>
+       <Card store={store}/>
       </div>
   )
 }

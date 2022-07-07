@@ -1,7 +1,6 @@
-
+import {rerenderEntireTree} from "../render";
 
 let store = {
-
     productsPage: {
         products: [
             {id: 1, name: 'Notebook', price: 2500},
@@ -10,7 +9,6 @@ let store = {
             {id: 4, name: 'Fridge', price: 5500},
         ]
     }
-
 }
 
 

@@ -1,14 +1,19 @@
 import React from 'react';
 import style from './Products.module.css';
+import {rerenderEntireTree} from "../../render";
 
 const Products = (props) => {
 
-    let productsElements = props.state.map(el =>
-        <div className={style.listItem}>
-            <h3> name={el.name} id={el.id} price={el.price} </h3></div>);
+    let productsElements = props.store.productsPage.products.map((el) =>
+        <div className={style.listItem} key={el.id}>
+            <h3>id={el.id},
+                name={el.name},
+                price={el.price}
+            </h3>
+        </div>);
 
     const getProducts = () => {
-
+        // code here
     }
 
     return (
@@ -20,7 +25,7 @@ const Products = (props) => {
                     List Products
                 </button>
             </div>
-            { productsElements }
+            {productsElements}
         </div>
     );
 };
