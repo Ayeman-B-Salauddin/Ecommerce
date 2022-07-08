@@ -1,19 +1,26 @@
 import React from 'react';
 import style from './Products.module.css';
-import {rerenderEntireTree} from "../../render";
+import {getProductsCreator} from "../../redux/store";
 
 const Products = (props) => {
 
-    let productsElements = props.store.productsPage.products.map((el) =>
-        <div className={style.listItem} key={el.id}>
-            <h3>id={el.id},
-                name={el.name},
-                price={el.price}
-            </h3>
+    let productsElements = props.products.map((el) =>
+        <div className={style.cardItem} key={el.id}>
+            <h5>
+                <ul>
+                    <li>
+                        id: {el.id},
+                        name: {el.name},
+                        nick: {el.username},
+                        email: {el.email}
+                    </li>
+                </ul>
+            </h5>
         </div>);
 
+
     const getProducts = () => {
-        // code here
+        props.dispatch(getProductsCreator());
     }
 
     return (

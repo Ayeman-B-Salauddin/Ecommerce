@@ -206,6 +206,16 @@ h3 {
     background: #fff;
 }
 
+.cardItem {
+    overflow: hidden;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
+    background: #86a8cb;
+}
+
 .card.marked {
     border: 4px solid #42b983;
 }
@@ -306,9 +316,6 @@ h3 {
 }
 
 
-
-
-
 .loader {
     font-size: 10px;
     margin: 50px auto;
@@ -350,7 +357,6 @@ h3 {
     bottom: 0;
     right: 0;
 }
-
 
 .navbar {
     display: flex;

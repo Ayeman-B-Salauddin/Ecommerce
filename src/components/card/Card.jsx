@@ -9,7 +9,7 @@ const Card = (props) => {
             <div className={style.card}>
                 <h1>Ecommerce</h1>
 
-                <Products store={props.store}/>
+                <Products products={props.productsPage.products} dispatch={props.dispatch}/>
             </div>
         </div>
     )
