@@ -10,7 +10,7 @@ export function useLocalStorage<T>(key: string, initialValue: T | (() => T)) {
     } else {
       return initialValue;
     }
-  });
+  }); //test
 
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(value));
