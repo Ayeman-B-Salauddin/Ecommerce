@@ -3,12 +3,17 @@ import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { CartItem } from "./CartItem";
 import storeItems from "../data/items.json";
+import useFetch from "../hooks/useFetch";
 
 type ShoppingCartProps = {
   isOpen: boolean;
 };
 
 export function ShoppingCart({ isOpen }: ShoppingCartProps) {
+  // const { loading, error, data } = useFetch("http://localhost:1337/api/items");
+  // if (loading) return <p>"loading....."</p>;
+  // if (error) return <p>"error"</p>;
+
   const { closeCart, cartItems } = useShoppingCart();
   return (
     <Offcanvas show={isOpen} onHide={closeCart} placement="end">
@@ -17,7 +22,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
       </Offcanvas.Header>
       <Offcanvas.Body>
         <Stack gap={3}>
-          {cartItems.map((item) => (
+          {cartItems.map((item: any) => (
             <CartItem key={item.id} {...item} />
           ))}
           <div className="ms-auto fw-bold fs-5">

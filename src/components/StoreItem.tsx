@@ -1,43 +1,43 @@
 import { Button, Card } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
-import { useQuery, gql } from "@apollo/client";
-import { useEffect } from "react";
 
-type StoreItemProps = {
-  id: number;
-  name: string;
-  price: number;
-  imgUrl: string;
-};
+// type StoreItemProps = {
+//   id: number;
+//   name: string;
+//   price: number;
+//   imgUrl: string;
+// }; { id, name, price, imgUrl }: StoreItemProps
 
-export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
+export function StoreItem({ ...item }) {
   const {
     getItemQuantity,
     increaseCartQuantity,
     decreaseCartQuantity,
     removeFromCart,
   } = useShoppingCart();
-  const quantity = getItemQuantity(id);
+  const quantity = getItemQuantity(item.id);
 
   return (
     <Card className="h-100">
       <Card.Img
         variant="top"
-        src={imgUrl}
+        src={item.attributes.url}
         height="200px"
         style={{ objectFit: "cover" }}
       />
       <Card.Body className="d-flex flex-column">
         <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
-          <span className="fs-2">{name}</span>
-          <span className="ms-2 text-muted">{formatCurrency(price)}</span>
+          <span className="fs-2">{item.attributes.name}</span>
+          <span className="ms-2 text-muted">
+            {formatCurrency(item.attributes.price)}
+          </span>
         </Card.Title>
         <div className="mt-auto">
           {quantity === 0 ? (
             <Button
               className="w-100"
-              onClick={() => increaseCartQuantity(id)}
+              onClick={() => increaseCartQuantity(item.id)}
               variant="secondary"
             >
               + Add To Cart
@@ -52,7 +52,7 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
                 style={{ gap: ".5rem" }}
               >
                 <Button
-                  onClick={() => decreaseCartQuantity(id)}
+                  onClick={() => decreaseCartQuantity(item.id)}
                   variant="secondary"
                 >
                   -
@@ -61,14 +61,14 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
                   <span className="fs-3">{quantity}</span> in cart
                 </div>
                 <Button
-                  onClick={() => increaseCartQuantity(id)}
+                  onClick={() => increaseCartQuantity(item.id)}
                   variant="secondary"
                 >
                   +
                 </Button>
               </div>
               <Button
-                onClick={() => removeFromCart(id)}
+                onClick={() => removeFromCart(item.id)}
                 variant="danger"
                 size="sm"
               >
