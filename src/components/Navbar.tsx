@@ -1,34 +1,21 @@
-import Link from "next/link";
 import { Button, Container, Nav, Navbar as NavbarBs } from "react-bootstrap";
-import { useShoppingCart } from "../context/CartContext";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 export function Navbar() {
   const { openCart, cartQuantity } = useShoppingCart();
   return (
-    <NavbarBs sticky="top" className="bg-white shadow-sm mb-3">
+    <NavbarBs sticky="top" className="bg-dark shadow-sm mb-3">
       <Container>
-        <Nav className="me-auto">
-          <Link href="/">
-            <Button variant="outline-dark" className="mx-2">
-              Home
-            </Button>
-          </Link>
-          <Link href="/store">
-            <Button variant="outline-dark" className="mx-2">
-              Store
-            </Button>
-          </Link>
-          <Link href="/about">
-            <Button variant="outline-dark" className="mx-2">
-              About
-            </Button>
-          </Link>
+        <Nav className="me-auto my-1">
+          <NavbarBs.Brand href="#store" className="text-light">
+            Ecommerce
+          </NavbarBs.Brand>
         </Nav>
         {cartQuantity > 0 && (
           <Button
             onClick={openCart}
             style={{ width: "3rem", height: "3rem", position: "relative" }}
-            variant="outline-dark"
+            variant="outline-warning"
             className="rounded-circle"
           >
             <svg

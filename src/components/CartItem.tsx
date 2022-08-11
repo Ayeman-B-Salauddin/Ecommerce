@@ -1,5 +1,5 @@
 import { Button, Stack } from "react-bootstrap";
-import { useShoppingCart } from "../context/CartContext";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 import storeItems from "../data/items.json";
 import { formatCurrency } from "../utilities/formatCurrency";
 
@@ -21,7 +21,7 @@ export function CartItem({ id, quantity }: CartItemProps) {
       />
       <div className="me-auto">
         <div>
-          {item.name}{" "}
+          {item.name}
           {quantity > 1 && (
             <span className="text-muted" style={{ fontSize: ".65rem" }}>
               x{quantity}

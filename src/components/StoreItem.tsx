@@ -1,6 +1,8 @@
 import { Button, Card } from "react-bootstrap";
-import { useShoppingCart } from "../context/CartContext";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
+import { useQuery, gql } from "@apollo/client";
+import { useEffect } from "react";
 
 type StoreItemProps = {
   id: number;
@@ -9,14 +11,30 @@ type StoreItemProps = {
   imgUrl: string;
 };
 
+const ITEMS = gql`
+  query GetItems {
+    items {
+      id
+      name
+      price
+    }
+  }
+`;
+
 export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
   const {
     getItemQuantity,
     increaseCartQuantity,
     decreaseCartQuantity,
     removeFromCart,
+    data,
   } = useShoppingCart();
   const quantity = getItemQuantity(id);
+
+  // ApolloProvider
+  // const { loading, error, data } = useQuery(ITEMS);
+  // if (error) return null;
+  console.log("x", data);
 
   return (
     <Card className="h-100">
@@ -33,7 +51,11 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
         </Card.Title>
         <div className="mt-auto">
           {quantity === 0 ? (
-            <Button className="w-100" onClick={() => increaseCartQuantity(id)}>
+            <Button
+              className="w-100"
+              onClick={() => increaseCartQuantity(id)}
+              variant="secondary"
+            >
               + Add To Cart
             </Button>
           ) : (
@@ -45,11 +67,21 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
                 className="d-flex align-items-center justify-content-center"
                 style={{ gap: ".5rem" }}
               >
-                <Button onClick={() => decreaseCartQuantity(id)}>-</Button>
+                <Button
+                  onClick={() => decreaseCartQuantity(id)}
+                  variant="secondary"
+                >
+                  -
+                </Button>
                 <div>
                   <span className="fs-3">{quantity}</span> in cart
                 </div>
-                <Button onClick={() => increaseCartQuantity(id)}>+</Button>
+                <Button
+                  onClick={() => increaseCartQuantity(id)}
+                  variant="secondary"
+                >
+                  +
+                </Button>
               </div>
               <Button
                 onClick={() => removeFromCart(id)}
