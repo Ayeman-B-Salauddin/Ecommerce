@@ -1,4 +1,3 @@
-import { useQuery, gql } from "@apollo/client";
 import { createContext, ReactNode, useContext, useState } from "react";
 import { ShoppingCart } from "../components/ShoppingCart";
 
@@ -20,18 +19,7 @@ type ShoppingCartContext = {
   removeFromCart: (id: number) => void;
   cartQuantity: number;
   cartItems: CartItem[];
-  data: any;
 };
-
-const ITEMS = gql`
-  query GetItems {
-    items {
-      id
-      name
-      price
-    }
-  }
-`;
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext);
 
@@ -41,10 +29,6 @@ export function useShoppingCart() {
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  // ApolloProvider
-  const { loading, error, data } = useQuery(ITEMS);
-  // const copy = { ...data.items };
-  // console.log(copy);
 
   const cartQuantity = cartItems.reduce(
     (quantity, item) => item.quantity + quantity,
@@ -103,7 +87,6 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         closeCart,
         cartItems,
         cartQuantity,
-        data,
       }}
     >
       {children}

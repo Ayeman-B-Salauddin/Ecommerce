@@ -11,30 +11,14 @@ type StoreItemProps = {
   imgUrl: string;
 };
 
-const ITEMS = gql`
-  query GetItems {
-    items {
-      id
-      name
-      price
-    }
-  }
-`;
-
 export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
   const {
     getItemQuantity,
     increaseCartQuantity,
     decreaseCartQuantity,
     removeFromCart,
-    data,
   } = useShoppingCart();
   const quantity = getItemQuantity(id);
-
-  // ApolloProvider
-  // const { loading, error, data } = useQuery(ITEMS);
-  // if (error) return null;
-  console.log("x", data);
 
   return (
     <Card className="h-100">
