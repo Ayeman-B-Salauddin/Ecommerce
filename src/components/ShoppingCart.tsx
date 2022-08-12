@@ -2,7 +2,6 @@ import { Offcanvas, Stack } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { CartItem } from "./CartItem";
-import storeItems from "../data/items.json";
 import useFetch from "../hooks/useFetch";
 
 type ShoppingCartProps = {
@@ -10,9 +9,9 @@ type ShoppingCartProps = {
 };
 
 export function ShoppingCart({ isOpen }: ShoppingCartProps) {
-  // const { loading, error, data } = useFetch("http://localhost:1337/api/items");
-  // if (loading) return <p>"loading....."</p>;
-  // if (error) return <p>"error"</p>;
+  const { loading, error, data } = useFetch("http://localhost:1337/api/items");
+  if (loading) return <p>"loading....."</p>;
+  if (error) return <p>"error"</p>;
 
   const { closeCart, cartItems } = useShoppingCart();
   return (
@@ -29,8 +28,10 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
             Total
             {formatCurrency(
               cartItems.reduce((total, cartItem) => {
-                const item = storeItems.find((i) => i.id === cartItem.id);
-                return total + (item?.price || 0) * cartItem.quantity;
+                const item = data.data.find((i: any) => i.id === cartItem.id);
+                return (
+                  total + (item?.attributes.price || 0) * cartItem.quantity
+                );
               }, 0)
             )}
           </div>
