@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useFetch = (url) => {
+const useFetch = (url: any) => {
   const [data, setData] = useState<any>("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -16,6 +16,7 @@ const useFetch = (url) => {
         setData(json);
         setLoading(false);
       } catch (error) {
+        //@ts-ignore
         setError(error);
         setLoading(false);
       }

@@ -31,7 +31,6 @@ const Home: NextPage = () => {
   return (
     <ShoppingCartProvider>
       <Navbar />
-
       <Container className="mb-4">
         <Row md={2} xs={1} lg={3} className="g-3">
           {data.data.map((item: any) => (
