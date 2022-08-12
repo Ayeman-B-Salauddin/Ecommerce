@@ -2,7 +2,7 @@ import { Button, Stack } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import useFetch from "../hooks/useFetch";
 import { formatCurrency } from "../utilities/formatCurrency";
-
+import Image from "next/image";
 export function CartItem({ id, quantity }: any) {
   const { loading, error, data } = useFetch("http://localhost:1337/api/items");
   if (loading) return <p>"loading....."</p>;
@@ -14,9 +14,11 @@ export function CartItem({ id, quantity }: any) {
 
   return (
     <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
-      <img
+      <Image
         src={item.attributes.url}
-        style={{ width: "125px", height: "75px", objectFit: "cover" }}
+        height={75}
+        width={125}
+        objectFit="cover"
       />
       <div className="me-auto">
         <div>

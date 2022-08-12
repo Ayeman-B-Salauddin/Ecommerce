@@ -8,8 +8,25 @@ import useFetch from "../src/hooks/useFetch";
 
 const Home: NextPage = () => {
   const { loading, error, data } = useFetch("http://localhost:1337/api/items");
-  if (loading) return <p>"loading....."</p>;
-  if (error) return <p>"error"</p>;
+
+  // Loading message
+  if (loading)
+    return (
+      <div className="d-flex justify-content-center mt-5">
+        <div className="spinner-grow text-warning" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+
+  // Error
+  if (error)
+    return (
+      <div d-flex justify-content-center mt-5>
+        <h1 className="display-1">Error</h1>
+        <h1 className="display-6">Something went wrong!</h1>
+      </div>
+    );
 
   return (
     <ShoppingCartProvider>
