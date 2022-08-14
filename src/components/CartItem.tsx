@@ -1,43 +1,37 @@
 import { Button, Stack } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
-import useFetch from "../hooks/useFetch";
 import { formatCurrency } from "../utilities/formatCurrency";
 import Image from "next/image";
-export function CartItem({ id, quantity }: any) {
-  const { loading, error, data } = useFetch("http://localhost:1337/api/items");
-  if (loading) return <p>"loading....."</p>;
-  if (error) return <p>"error"</p>;
 
+export function CartItem({ id, quantity, data }: any) {
   const { removeFromCart } = useShoppingCart();
-  const item = data.data.find((i: any) => i.id === id);
+  //@ts-ignore
+  const item = data.find((i) => i.sys.id === id);
+
   if (item == null) return null;
 
   return (
     <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
-      <Image
-        src={item.attributes.url}
-        height={75}
-        width={125}
-        objectFit="cover"
-      />
+      <Image src={item.fields.url} height={75} width={125} objectFit="cover" />
       <div className="me-auto">
         <div>
-          {item.attributes.name}
+          {item.fields.name}
           {quantity > 1 && (
             <span className="text-muted" style={{ fontSize: ".65rem" }}>
+              {" "}
               x{quantity}
             </span>
           )}
         </div>
         <div className="text-muted" style={{ fontSize: ".75rem" }}>
-          {formatCurrency(item.attributes.price)}
+          {formatCurrency(item.fields.price)}
         </div>
       </div>
-      <div> {formatCurrency(item.attributes.price * quantity)}</div>
+      <div> {formatCurrency(item.fields.price * quantity)}</div>
       <Button
         variant="outline-danger"
         size="sm"
-        onClick={() => removeFromCart(item.id)}
+        onClick={() => removeFromCart(item.sys.id)}
       >
         &times;
       </Button>

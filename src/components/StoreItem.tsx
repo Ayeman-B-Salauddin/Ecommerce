@@ -10,13 +10,12 @@ export function StoreItem({ ...item }) {
     decreaseCartQuantity,
     removeFromCart,
   } = useShoppingCart();
-  const quantity = getItemQuantity(item.id);
-
+  const quantity = getItemQuantity(item.sys.id);
   return (
     <>
       <Card className="h-100">
         <Image
-          src={item.attributes.url}
+          src={item.fields.url}
           height={350}
           width={500}
           objectFit="cover"
@@ -24,16 +23,16 @@ export function StoreItem({ ...item }) {
 
         <Card.Body className="d-flex flex-column">
           <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
-            <span className="fs-2">{item.attributes.name}</span>
+            <span className="fs-2">{item.fields.name}</span>
             <span className="ms-2 text-muted">
-              {formatCurrency(item.attributes.price)}
+              {formatCurrency(item.fields.price)}
             </span>
           </Card.Title>
           <div className="mt-auto">
             {quantity === 0 ? (
               <Button
                 className="w-100"
-                onClick={() => increaseCartQuantity(item.id)}
+                onClick={() => increaseCartQuantity(item.sys.id)}
                 variant="secondary"
               >
                 + Add To Cart
@@ -48,7 +47,7 @@ export function StoreItem({ ...item }) {
                   style={{ gap: ".5rem" }}
                 >
                   <Button
-                    onClick={() => decreaseCartQuantity(item.id)}
+                    onClick={() => decreaseCartQuantity(item.sys.id)}
                     variant="secondary"
                   >
                     -
@@ -57,14 +56,14 @@ export function StoreItem({ ...item }) {
                     <span className="fs-3">{quantity}</span> in cart
                   </div>
                   <Button
-                    onClick={() => increaseCartQuantity(item.id)}
+                    onClick={() => increaseCartQuantity(item.sys.id)}
                     variant="secondary"
                   >
                     +
                   </Button>
                 </div>
                 <Button
-                  onClick={() => removeFromCart(item.id)}
+                  onClick={() => removeFromCart(item.sys.id)}
                   variant="danger"
                   size="sm"
                 >
