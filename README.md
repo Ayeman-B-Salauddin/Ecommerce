@@ -1,4 +1,4 @@
-## Ecommerce app with React, GraphQL and Strapi
+## Ecommerce app with React, Next and Contentful
 
 Technologies used for this project are :
 
