@@ -5,6 +5,7 @@ import { ShoppingCartProvider } from "../src/context/ShoppingCartContext";
 import { Col, Row } from "react-bootstrap";
 import { StoreItem } from "../src/components/StoreItem";
 import { createClient } from "contentful";
+import Head from "next/head";
 
 export async function getStaticProps() {
   const client = createClient({
@@ -31,18 +32,28 @@ const Home: NextPage = ({ products }: any) => {
   const data2 = [...products];
 
   return (
-    <ShoppingCartProvider data2={data2}>
-      <Navbar />
-      <Container className="mb-4">
-        <Row md={2} xs={1} lg={3} className="g-3">
-          {products.map((item: any) => (
-            <Col key={item.sys.id}>
-              <StoreItem {...item} />
-            </Col>
-          ))}
-        </Row>
-      </Container>
-    </ShoppingCartProvider>
+    <>
+      <Head>
+        <title>Ecommerce</title>
+        <meta name="description" content="A feature rich web experience" />
+        <link
+          rel="icon"
+          href="https://img.icons8.com/fluency/48/000000/online-store.png"
+        />
+      </Head>
+      <ShoppingCartProvider data2={data2}>
+        <Navbar />
+        <Container className="mb-4">
+          <Row md={2} xs={1} lg={3} className="g-3">
+            {products.map((item: any) => (
+              <Col key={item.sys.id}>
+                <StoreItem {...item} />
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </ShoppingCartProvider>
+    </>
   );
 };
 
