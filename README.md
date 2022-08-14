@@ -6,5 +6,4 @@ React
 Next.js
 Bootstrap
 TypeScript
-GraphQL
-Strapi
+Contentful (Headless CMS)
