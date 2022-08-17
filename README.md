@@ -1,4 +1,4 @@
-## Ecommerce app with React, GraphQL and Strapi
+## Ecommerce app with React
 
 Technologies used for this project are :
 
@@ -6,5 +6,5 @@ React
 Next.js
 Bootstrap
 TypeScript
-GraphQL
-Strapi
+Contentful
+
