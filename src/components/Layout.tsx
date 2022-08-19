@@ -1,6 +1,8 @@
 import Head from "next/head";
 import React from "react";
+import { ShoppingCartProvider } from "../context/ShoppingCartContext";
 import { Footer } from "./Footer";
+import { Navbar } from "./Navbar";
 
 type LayoutProps = {
   children: JSX.Element;
@@ -16,7 +18,7 @@ export const Layout = ({ children }: LayoutProps) => {
           rel="icon"
           href="https://img.icons8.com/fluency/48/000000/online-store.png"
         />
-      </Head>
+      </Head>      
       {children}
       <Footer />
     </>

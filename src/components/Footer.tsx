@@ -16,6 +16,7 @@ export const Footer = (): JSX.Element => (
           <ul className="list-unstyled">
             <li>
               <a
+                target="_blank"
                 href="https://github.com/Ayeman-B-Salauddin/Ecommerce"
                 className="text-secondary text-decoration-none"
               >
@@ -24,6 +25,7 @@ export const Footer = (): JSX.Element => (
             </li>
             <li>
               <a
+                target="_blank"
                 href="https://www.linkedin.com/in/ayeman-bin-salauddin/"
                 className="text-secondary text-decoration-none"
               >
@@ -32,6 +34,7 @@ export const Footer = (): JSX.Element => (
             </li>
             <li>
               <a
+                target="_blank"
                 href="https://ayeman-b-salauddin.vercel.app/"
                 className="text-secondary text-decoration-none"
               >
@@ -46,6 +49,7 @@ export const Footer = (): JSX.Element => (
     <div className="footer-copyright text-center py-3">
       <p className="text-white">© 2022 Copyright:</p>
       <a
+        target="_blank"
         href="https://ayeman-b-salauddin.vercel.app/"
         className="text-secondary text-decoration-none"
       >

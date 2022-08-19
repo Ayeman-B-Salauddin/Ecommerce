@@ -835,6 +835,7 @@ __metadata:
     react: 18.2.0
     react-bootstrap: ^2.5.0
     react-dom: 18.2.0
+    sweetalert2: ^11.4.28
     typescript: 4.7.4
   languageName: unknown
   linkType: soft
@@ -2601,6 +2602,13 @@ __metadata:
   version: 1.0.0
   resolution: "supports-preserve-symlinks-flag@npm:1.0.0"
   checksum: 53b1e247e68e05db7b3808b99b892bd36fb096e6fba213a06da7fab22045e97597db425c724f2bbd6c99a3c295e1e73f3e4de78592289f38431049e1277ca0ae
+  languageName: node
+  linkType: hard
+
+"sweetalert2@npm:^11.4.28":
+  version: 11.4.28
+  resolution: "sweetalert2@npm:11.4.28"
+  checksum: 179fa00fa90fc0db02dcbc253fd225f97c49256d1170caa3ac589298b3cfb71e33156cbea86481237122f6fd0dda558a3d58c32eba1fe1acaca7f9c8842e8ed0
   languageName: node
   linkType: hard
 

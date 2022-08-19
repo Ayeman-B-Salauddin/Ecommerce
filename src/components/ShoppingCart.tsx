@@ -1,8 +1,11 @@
+//@ts-nocheck
+
 import { Offcanvas, Stack } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { CartItem } from "./CartItem";
 import { createClient } from "contentful";
+import Swal from "sweetalert2";
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -10,9 +13,7 @@ type ShoppingCartProps = {
 };
 export async function getStaticProps() {
   const client = createClient({
-    //@ts-ignore
     space: process.env.CONTENTFUL_SPACE_ID,
-    //@ts-ignore
     accessToken: process.env.CONTENTFUL_ACCESS_KEY,
   });
 
@@ -30,7 +31,22 @@ export async function getStaticProps() {
 }
 
 export function ShoppingCart({ isOpen, data2 }: ShoppingCartProps) {
-  const { closeCart, cartItems } = useShoppingCart();
+  const { removeAll, closeCart, cartItems } = useShoppingCart();
+  function handleOrder(id: any) {
+    Swal.fire({
+      title: 'Would you like to place an order right away?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Yes, order now',
+      denyButtonText: `Don't`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Order successfully placed!', '', 'success');
+      } else if (result.isDenied) {
+        Swal.fire('No purchase was made', '', 'info')
+      }
+    })
+  }
   return (
     <Offcanvas show={isOpen} onHide={closeCart} placement="end">
       <Offcanvas.Header closeButton>
@@ -41,8 +57,9 @@ export function ShoppingCart({ isOpen, data2 }: ShoppingCartProps) {
           {cartItems.map((item: any) => (
             <CartItem key={item.id} {...item} data={data2} />
           ))}
+
           <div className="ms-auto fw-bold fs-5">
-            Total
+            Total 
             {formatCurrency(
               cartItems.reduce((total, cartItem) => {
                 const item = data2.find((i: any) => i.sys.id === cartItem.id);
@@ -50,6 +67,9 @@ export function ShoppingCart({ isOpen, data2 }: ShoppingCartProps) {
               }, 0)
             )}
           </div>
+          <br />
+          <button type="button" className="btn btn-danger" onClick={removeAll}>Remove All</button>
+          <button type="button" className="btn btn-warning" onClick={handleOrder}>Place Order</button>
         </Stack>
       </Offcanvas.Body>
     </Offcanvas>

@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from "react";
+import Swal from "sweetalert2";
 import { ShoppingCart } from "../components/ShoppingCart";
 
 type ShoppingCartProviderProps = {
@@ -18,6 +19,7 @@ type ShoppingCartContext = {
   increaseCartQuantity: (id: number) => void;
   decreaseCartQuantity: (id: number) => void;
   removeFromCart: (id: number) => void;
+  removeAll: (id: number) => any;
   cartQuantity: number;
   cartItems: CartItem[];
 };
@@ -79,6 +81,25 @@ export function ShoppingCartProvider({
       return currItems.filter((item) => item.id !== id);
     });
   }
+  function removeAll(id: number) {
+    Swal.fire({
+      title: 'Are you sure?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: `No`,
+    }).then((result) => {
+      if (result.isConfirmed) {    
+        setCartItems([]);
+        Swal.fire('Cart is empty now!', '', 'success')
+        setIsOpen(false);
+        
+      } else if (result.isDenied) {
+        Swal.fire('Keep shopping...', '', 'info')
+      }
+    })}
+
+
 
   return (
     <ShoppingCartContext.Provider
@@ -87,6 +108,7 @@ export function ShoppingCartProvider({
         increaseCartQuantity,
         decreaseCartQuantity,
         removeFromCart,
+        removeAll,
         openCart,
         closeCart,
         cartItems,

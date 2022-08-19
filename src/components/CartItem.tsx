@@ -12,7 +12,15 @@ export function CartItem({ id, quantity, data }: any) {
 
   return (
     <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
-      <Image src={item.fields.url} height={75} width={125} objectFit="cover" />
+      <Image 
+          placeholder="blur"
+          blurDataURL={item.fields.url} 
+          src={item.fields.url} 
+          height={75} 
+          width={125} 
+          objectFit="cover" 
+      />
+      
       <div className="me-auto">
         <div>
           {item.fields.name}

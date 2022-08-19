@@ -5,7 +5,6 @@ import { ShoppingCartProvider } from "../src/context/ShoppingCartContext";
 import { Col, Row } from "react-bootstrap";
 import { StoreItem } from "../src/components/StoreItem";
 import { createClient } from "contentful";
-import { Footer } from "../src/components/Footer";
 
 export async function getStaticProps() {
   const client = createClient({
