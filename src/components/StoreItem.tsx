@@ -45,6 +45,7 @@ export function StoreItem({ ...item }) {
           height={350}
           width={500}
           objectFit="cover"
+          alt="image of the selected product"
         />
         </button>
 

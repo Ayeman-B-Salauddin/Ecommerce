@@ -26,6 +26,7 @@ export const Footer = (): JSX.Element => (
             <li>
               <a
                 target="_blank"
+                rel="noreferrer"
                 href="https://www.linkedin.com/in/ayeman-bin-salauddin/"
                 className="text-secondary text-decoration-none"
               >
@@ -35,6 +36,7 @@ export const Footer = (): JSX.Element => (
             <li>
               <a
                 target="_blank"
+                rel="noreferrer"
                 href="https://ayeman-b-salauddin.vercel.app/"
                 className="text-secondary text-decoration-none"
               >
@@ -50,6 +52,7 @@ export const Footer = (): JSX.Element => (
       <p className="text-white">© 2022 Copyright:</p>
       <a
         target="_blank"
+        rel="noreferrer"
         href="https://ayeman-b-salauddin.vercel.app/"
         className="text-secondary text-decoration-none"
       >

@@ -19,6 +19,7 @@ export function CartItem({ id, quantity, data }: any) {
           height={75} 
           width={125} 
           objectFit="cover" 
+          alt="an image of the product"
       />
       
       <div className="me-auto">
