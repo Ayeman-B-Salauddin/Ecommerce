@@ -16,6 +16,7 @@ export const Footer = (): JSX.Element => (
           <ul className="list-unstyled">
             <li>
               <a
+                rel="noreferrer"
                 target="_blank"
                 href="https://github.com/Ayeman-B-Salauddin/Ecommerce"
                 className="text-secondary text-decoration-none"
