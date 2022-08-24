@@ -10,7 +10,6 @@ A feature rich [Ecommerce app](https://ecommerce-elegant.vercel.app/) built with
 <br />
 ___
 #### Technologies used :
-<br />
 React <br />
 Next.js <br />
 Bootstrap <br />
